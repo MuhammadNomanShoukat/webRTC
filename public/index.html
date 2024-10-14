@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Video Streaming & Recording</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .video-call-container {
+            width: 70%;
+            margin: 0 auto;
+            position: relative;
+        }
+        .video-stream {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .video-stream video {
+            width: 30%;
+            height: auto;
+            border: 3px solid #ddd;
+            border-radius: 8px;
+            background: #000;
+            min-height: 240px;
+        }
+        #mergeCanvas {
+            display: none;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demo WebRTC Video</h1>
+
+    <div class="video-call-container">
+        <div class="video-stream">
+            <video id="localVideo" autoplay playsinline muted></video>
+            <video id="remoteVideo" autoplay playsinline></video>
+            <video id="sharedScreen" autoplay playsinline></video>
+        </div>
+    </div>
+
+    <div>
+        <button id="startScreenShareButton">Start Screen Share</button>
+        <button id="stopScreenShareButton" disabled>Stop Screen Share</button>
+        <button id="startRecordingButton">Start Recording</button>
+        <button id="stopRecordingButton" disabled>Stop Recording</button>
+    </div>
+
+    <canvas id="mergeCanvas" width="1000" height="500"></canvas>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
